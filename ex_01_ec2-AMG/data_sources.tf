@@ -76,23 +76,23 @@ data "aws_availability_zones" "azs_available_r2" {
   state = "available"
 }
 
-resource "aws_subnet" "sub_r1" {
+resource "aws_subnet" "subnet_r1" {
   cidr_block = "172.31.48.0/20"
   vpc_id = data.aws_vpc.def_vpc_r1.id
   availability_zone = data.aws_availability_zones.azs_available_r1.names[1]
 
   tags = {
-    Name = "second"
+    Name = "forced to az b"
   }  
 }
 
-resource "aws_subnet" "sub_r2" {
+resource "aws_subnet" "subnet_r2" {
   provider = aws.region2
   cidr_block = "172.31.48.0/20"
   vpc_id = data.aws_vpc.def_vpc_r2.id
   availability_zone = data.aws_availability_zones.azs_available_r2.names[1]
 
   tags = {
-    Name = "second"
+    Name = "forced to az b"
   }  
 }
