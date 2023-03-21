@@ -34,6 +34,10 @@ variable "lab_number" {
 }
 
 ## VPC and subnet parameters
+variable vpc_id {
+  type = string
+  default = "vpc-0a2506411e59d8688"
+}
 
 ## VPC parameters
 variable "vpc_cidr" {
@@ -63,8 +67,6 @@ variable "db_subnets" {
   default     = ["10.10.201.0/24", "10.10.202.0/24"]
 }
 
-
-## EC2 Instance Parameters
 variable "instance_type" {
   type    = string
   default = "t2.micro"
@@ -84,8 +86,9 @@ variable "sec_allowed_external" {
 }
 
 ## ECS Parameters
+
 variable "num_instances" {
-  default = 6
+  default = 2
 }
 
 variable "special_port" {
