@@ -21,3 +21,4 @@ data "aws_ami" "amazon_linux2_kernel_5" {
     values = ["x86_64"]
   }
 }
+
