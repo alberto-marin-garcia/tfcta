@@ -65,6 +65,9 @@ variable "db_subnets" {
 
 
 ## EC2 Instance Parameters
+variable "num_instances" {
+  default = 6
+}
 variable "instance_type" {
   type    = string
   default = "t2.micro"
@@ -84,10 +87,6 @@ variable "sec_allowed_external" {
 }
 
 ## ECS Parameters
-variable "num_instances" {
-  default = 6
-}
-
 variable "special_port" {
   type = string
 }

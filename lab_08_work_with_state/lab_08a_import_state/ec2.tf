@@ -10,13 +10,7 @@ resource "aws_instance" "test_import" {
   }
 }
 
-resource "aws_instance" "rafatest" {
-  # (resource arguments)
-}
 
-resource "aws_instance" "rafatest2" {
-  # (resource arguments)
-}
  
 # Security group: allow ssh and ICMP ping from allowed external subnets
 resource "aws_security_group" "sec_ssh_ping_import" {
@@ -46,5 +40,18 @@ resource "aws_security_group" "sec_ssh_ping_import" {
 
   lifecycle {
     create_before_destroy = true
+  }
+}
+
+resource "aws_instance" "importada_rafa" {
+ tags = {
+  project = var.project
+ }
+ 
+
+ lifecycle {
+ ignore_changes = [
+   tags
+ ]
   }
 }

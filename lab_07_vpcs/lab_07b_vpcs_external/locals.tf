@@ -10,5 +10,5 @@ locals {
 
   name_suffix = "${var.project}-${var.environment}-${var.lab_number}"
 
-
+  public_subnet_ids = data.aws_subnets.public_subnets.ids
 }

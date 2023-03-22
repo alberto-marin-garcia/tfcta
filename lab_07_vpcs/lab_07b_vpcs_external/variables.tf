@@ -10,7 +10,6 @@ variable "profile" {
   default = "cta"
 }
 
-
 ## Environment and Project
 variable "company" {
   type        = string
@@ -33,40 +32,13 @@ variable "lab_number" {
   default = "put-a-lab-number-here"
 }
 
-## VPC and subnet parameters
-variable vpc_id {
-  type = string
-  default = "vpc-0a2506411e59d8688"
-}
 
-## VPC parameters
-variable "vpc_cidr" {
-  type    = string
-  default = "10.10.0.0/16"
-  validation {
-    condition     = can(cidrnetmask(var.vpc_cidr)) ## Needs work
-    error_message = "Invalid CIDR for VPC."
-  }
-}
 
-variable "public_subnets" {
-  type        = list(string)
-  description = "list of subnets used for public subnets"
-  default     = ["10.10.1.0/24", "10.10.2.0/24"]
-}
 
-variable "private_subnets" {
-  type        = list(string)
-  description = "list of subnets used for private subnets"
-  default     = ["10.10.10.0/23", "10.10.12.0/23"]
+## EC2 Instance Parameters
+variable "num_instances" {
+  default = 2
 }
-
-variable "db_subnets" {
-  type        = list(string)
-  description = "list of subnets used for database subnets"
-  default     = ["10.10.201.0/24", "10.10.202.0/24"]
-}
-
 variable "instance_type" {
   type    = string
   default = "t2.micro"
@@ -86,12 +58,10 @@ variable "sec_allowed_external" {
 }
 
 ## ECS Parameters
-
-variable "num_instances" {
-  default = 2
-}
-
 variable "special_port" {
   type = string
 }
 
+variable "vpc_name" {
+  type = string
+}

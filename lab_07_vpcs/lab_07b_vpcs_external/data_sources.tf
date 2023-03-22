@@ -1,14 +1,6 @@
-data "aws_vpc" "vpc_id" {
-  id = var.vpc_id
-}
-
-data "aws_subnets" "public" {
-  tags = {
-    Tier = "public"
-  }
-}
 
 data "aws_availability_zones" "available" {
+
   state = "available"
 }
 
@@ -30,3 +22,24 @@ data "aws_ami" "amazon_linux2_kernel_5" {
   }
 }
 
+data "aws_vpc" "vpc_id" {
+  filter {
+    name   = "tag:Name"
+    values = [var.vpc_name]
+  }
+}
+
+data "aws_subnets" "public_subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.vpc_id.id]
+  }
+
+  filter {
+    name   = "tag:tier"
+    values = ["public"]
+  }
+}
+
+
+ 
