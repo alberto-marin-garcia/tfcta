@@ -29,4 +29,3 @@ output "user_identity" {
   # value       = data.aws_caller_identity.current
   value = try(data.aws_caller_identity.current, "Not available")
 }
-
