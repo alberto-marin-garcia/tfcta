@@ -6,8 +6,7 @@ variable "environment" {
 }
 
 variable "project" {
-  type    = string
-  default = "proj99"
+  type = string
 }
 
 ## AWS Specific parameters
@@ -19,6 +18,10 @@ variable "region" {
 variable "profile" {
   type    = string
   default = "cta"
+}
+
+variable "lab_number" {
+  type = string
 }
 
 ## EC2 Instance Parameters
