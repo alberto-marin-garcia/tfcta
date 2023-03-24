@@ -7,13 +7,18 @@ locals {
   # subnet_info = data.aws_subnets.def_vpc_subnets
 }
 
+resource "aws_key_pair" "deployer" {
+  key_name   = "lab07_deployer-key"
+  #public_key = file("${path.module}/keys/${var.key_name}.pub")
+  public_key = file("${path.module}/keys/tf_course.pub")
+}
 
 resource "aws_instance" "test1" {
   ami                    = data.aws_ami.amazon_linux2_kernel_5.id
   instance_type          = var.instance_type
   subnet_id              = data.aws_subnets.def_vpc_subnets.ids[0]
   vpc_security_group_ids = [aws_security_group.sec_web.id]
-  key_name               = var.key_name
+  key_name               = aws_key_pair.deployer.key_name
   tags = {
     Name = "${var.project}-test1"
   }

@@ -6,19 +6,19 @@ variable "environment" {
 }
 
 variable "project" {
-  type    = string
-  default = "proj99"
+  description = "Project Name"
+  type        = string
 }
 
 ## AWS Specific parameters
 variable "region" {
-  type    = string
-  default = "eu-west-1"
+  description = "AWS Region"
+  type        = string
 }
 
 variable "profile" {
-  type    = string
-  default = "cta"
+  description = "AWS CLI profile to be used by Terraform when performing API calls"
+  type        = string
 }
 
 ## EC2 Instance Parameters
@@ -26,12 +26,6 @@ variable "instance_type" {
   type    = string
   default = "t2.micro"
 }
-
-variable "key_name" {
-  type    = string
-  default = "tf-course"
-}
-
 
 ## Security Groups
 variable "sec_allowed_external" {

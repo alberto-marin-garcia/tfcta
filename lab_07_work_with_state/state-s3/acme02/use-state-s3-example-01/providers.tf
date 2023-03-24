@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "acme02-terraform-state-044858806836-dev"           
+    bucket         = "acme02-terraform-state-788291010514-dev"           
     ## Note key is application specific
     key            = "acme02/example-01/terraform.tfstate"  
     dynamodb_table = "acme02-terraform-state-locks-dev"

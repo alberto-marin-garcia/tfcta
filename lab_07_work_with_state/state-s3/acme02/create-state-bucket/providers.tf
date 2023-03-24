@@ -14,8 +14,8 @@ provider "aws" {
   profile = var.profile
   default_tags {
     tags = {
-      "${var.company}:environment" = var.environment
-      "${var.company}:project"     = var.project
+      environment = var.environment
+      project     = var.project
       created_by  = "terraform"
       disposable  = true
     }
