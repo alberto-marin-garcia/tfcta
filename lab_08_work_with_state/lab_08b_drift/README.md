@@ -1,6 +1,5 @@
 This lab follows HashiCorp's tutorial "Manage Resource Drift" at
-https://developer.hasawshicorp.com/terraform/tutorials/state/resource-drift
-
+https://developer.hashicorp.com/terraform/tutorials/state/resource-drift
 Variables modified to align with course
 - region -> eu-west-1
 
