@@ -7,7 +7,7 @@ module "vpc_one" {
   enable_nat_gateway = false
   single_nat_gateway = true
 
-  azs             = ["${var.region}a", "${var.region}b"]
+  azs             = ["${var.region}a", "${var.region}b", "${var.region}c"]
   public_subnets  = var.pub_subnets
   private_subnets = var.priv_subnets
 
