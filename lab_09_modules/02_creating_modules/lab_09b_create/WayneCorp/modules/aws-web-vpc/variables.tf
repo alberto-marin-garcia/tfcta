@@ -1,23 +1,22 @@
-variable "vpc_cidr_block" {
-  description = "CIDR block for webserer VPC"
-  type        = string
-  default     = "10.22.0.0/16"
-}
+## Mandatory variables
 
 variable "vpc_name" {
   type    = string
-  default = "web_server_vpc"
+}
+
+variable "vpc_cidr_block" {
+  description = "CIDR block for webserer VPC"
 }
 
 variable "subnet_cidr_block" {
   type    = string
-  default = "10.22.1.0/24"
 }
 
 variable "subnet_name" {
   type    = string
-  default = "web_server_subnet"
 }
+
+## Optional variables
 
 variable "aws_az" {
   type    = string
@@ -34,13 +33,4 @@ variable "rt_name" {
   default = "web_server_rt"
 }
 
-variable "security_group_name" {
-  type    = string
-  default = "web_server_sc"
-}
-
-variable "security_group_description" {
-  type    = string
-  default = "Allow traffic for webserver"
-}
 

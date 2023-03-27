@@ -1,9 +1,9 @@
 lab_number = "09b1"
 
-region  = "eu-west-1"
-profile = "cta"
-company = "WayneCorp"
-project = "project1"
+region    = "eu-west-1"
+profile   = "cta"
+company   = "WayneCorp"
+project   = "project1"
 server_os = "ubuntu"
 
 ec2_instance_type = "t2.micro"

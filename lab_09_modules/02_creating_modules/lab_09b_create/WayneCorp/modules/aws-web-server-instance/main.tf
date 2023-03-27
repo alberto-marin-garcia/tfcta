@@ -8,10 +8,9 @@ locals {
 resource "aws_instance" "web_server_instance" {
   ami = local.server_ami_id[var.os]
   instance_type = var.ec2_instance_type
-
+  vpc_security_group_ids = var.sec_group_ids
   subnet_id              = var.subnet_id
-  vpc_security_group_ids = [var.web_server_sc]
-
+  
   tags = {
     Name = var.ec2_instance_name
   }

@@ -61,4 +61,3 @@ So far we have seen how to call the module with "input" variables.
 The modules have also "output" variables - 
 The official VPC module has 100+ possible outputs but not all are available (depending on our input values)
 
-We can explore a few 

@@ -1,3 +1,8 @@
+# For sg name randomness
+resource "random_id" "sg_suffix" {
+  byte_length = 8
+}
+
 resource "aws_vpc" "web_server_vpc" {
   cidr_block       = var.vpc_cidr_block
   instance_tenancy = "default"
@@ -43,11 +48,9 @@ resource "aws_route_table_association" "web_server_rt_association" {
   route_table_id = aws_route_table.web_server_rt.id
 }
 
-
-
-resource "aws_security_group" "web_server_sc" {
-  name        = var.security_group_name
-  description = var.security_group_description
+resource "aws_security_group" "web_server_sg_name" {
+  name        = local.sg_name
+  description = "Web security group (created by module)"
   vpc_id      = aws_vpc.web_server_vpc.id
 
   ingress {
@@ -68,7 +71,11 @@ resource "aws_security_group" "web_server_sc" {
   }
 
   tags = {
-    Name = var.security_group_name
+    Name = local.sg_name
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
 

@@ -13,7 +13,12 @@ output "subnet_cidr" {
   value       = aws_subnet.web_server_subnet.cidr_block
 }
 
-output "web_sec_group" {
+output "subnet_az" {
+  description = "Availability Zone of created subnet"
+  value = aws_subnet.web_server_subnet.availability_zone
+}
+
+output "web_sec_group_id" {
   description = "Id of vpc security group"
-  value = aws_security_group.web_server_sc.id
+  value = aws_security_group.web_server_sg_name.id
 }

@@ -1,18 +1,22 @@
 output "vpc_id" {
   description = "ID of the vpc"
-  value       = module.aws_web_vpc.vpc_id
+  value       = module.my_web_vpc.vpc_id
 }
 
 output "subnet_id" {
   description = "ID of the vpc"
-  value       = module.aws_web_vpc.subnet_id
+  value       = module.my_web_vpc.subnet_id
 }
 
 output "subnet_cidr" {
-  description = "ID of the vpc"
-  value       = module.aws_web_vpc.subnet_cidr
+  description = "CIDR of subnet"
+  value       = module.my_web_vpc.subnet_cidr
 }
 
+output "subnet_availability_zone" {
+  description = "AZ of subnet"
+  value       = module.my_web_vpc.subnet_az
+}
 output "web1_instance_id" {
   description = "ID of EC2 instance"
   value       = module.web1.instance_id
