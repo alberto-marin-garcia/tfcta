@@ -36,20 +36,20 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "deployer-key"
-  public_key = file("${path.module}/keys/key.pub")
+  public_key = file("${path.module}/key.pub")
 }
 
 resource "aws_instance" "example" {
   ami                    = data.aws_ami.ubuntu.id
   key_name               = aws_key_pair.deployer.key_name
   instance_type          = "t2.micro"
-  #vpc_security_group_ids = [aws_security_group.sg_ssh.id]
-  vpc_security_group_ids = [aws_security_group.sg_ssh.id, aws_security_group.sg_web.id] 
+  # vpc_security_group_ids = [aws_security_group.sg_ssh.id]
+  vpc_security_group_ids = [aws_security_group.sg_ssh.id, aws_security_group.sg_web.id]
   user_data              = <<-EOF
               #!/bin/bash
               apt-get update
               apt-get install -y apache2
-              sed -i-e 's/80/8080/' /etc/apache2/ports.conf
+              sed -i -e 's/80/8080/' /etc/apache2/ports.conf
               echo "Hello World" > /var/www/html/index.html
               systemctl restart apache2
               EOF
@@ -61,32 +61,27 @@ resource "aws_instance" "example" {
 
 resource "aws_security_group" "sg_ssh" {
   name = "sg_ssh"
-  #description = "allow SSH"
-
   ingress {
     from_port   = "22"
     to_port     = "22"
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
   // connectivity to ubuntu mirrors is required to run `apt-get update` and `apt-get install apache2`
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-  } 
-
-  #  Protect against deletion - uncomment when ready 
-  # lifecycle {
-  #   prevent_destroy = true
-  # }
+  }
 }
 
 resource "aws_security_group" "sg_web" {
   name        = "sg_web"
   description = "allow 8080"
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_security_group_rule" "sg_web" {
@@ -95,5 +90,14 @@ resource "aws_security_group_rule" "sg_web" {
   from_port = "8080"
   protocol  = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.sg_web.id
+}
+resource "aws_security_group_rule" "sg_web_80" {
+  type      = "ingress"
+  to_port   = "80"
+  from_port = "80"
+  protocol  = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  description = "Hola Hola"
   security_group_id = aws_security_group.sg_web.id
 }

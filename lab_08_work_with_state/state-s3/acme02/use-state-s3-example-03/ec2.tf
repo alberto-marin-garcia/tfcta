@@ -1,7 +1,7 @@
 
 
 
-resource "aws_instance" "test1" {
+resource "aws_instance" "test3" {
   ami                    = data.aws_ami.amazon_linux2_kernel_5.id
   instance_type          = var.instance_type
   subnet_id              = data.aws_subnets.def_vpc_subnets.ids[0]
