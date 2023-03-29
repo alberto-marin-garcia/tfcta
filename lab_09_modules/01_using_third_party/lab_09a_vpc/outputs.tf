@@ -14,17 +14,10 @@ output "ip_publica_de_server_pub" {
   value = aws_instance.server_pub.public_ip
 }
 
-output "ips_privadas_de_server_pub" {
-  value = aws_instance.server_pub.private_ip
-}
-
 output "ips_privadas_de_server_priv" {
   value = aws_instance.server_priv[*].private_ip
 }
 
-output "ip_publica_de_server_priv" {
-  value = aws_instance.server_priv[*].public_ip
-}
 
 
 
